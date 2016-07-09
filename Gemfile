@@ -25,22 +25,22 @@ gem 'delayed_job_active_record'
 
 # Less verbose logging
 gem 'lograge'
-# Better error pages when stuff breaks
-gem 'better_errors'
 # Random data for tests and seeds
 gem 'faker'
 # Factory creation instead of fixtures for test data
 gem 'factory_girl_rails'
-# Live debugging in web REPL
-gem 'binding_of_caller'
-# Better `rails c`
-gem 'pry'
 
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   # Open emails in the browser
   gem 'letter_opener'
+  # Better `rails c`
+  gem 'pry-rails'
+  # Better error pages when stuff breaks
+  gem 'better_errors'
+  # Live debugging in web REPL
+  gem 'binding_of_caller'
 end
 
 group :assets do
