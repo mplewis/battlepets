@@ -1,7 +1,7 @@
 # Gain for each stat is determined by a Gaussian distribution with mean base_gain and sigma variance
 all:
-  base_gain: 4
-  variance: 2
+  base_gain: 0.5
+  variance: 0.2
 
 # Multipliers for each stat, by training regimen
 regimens:
