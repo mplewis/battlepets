@@ -1,12 +1,20 @@
-power:
-  strength: 3
-  agility: 1
+# Performance in each attribute is determined by a Gaussian distribution with mean = pet's attribute value,
+# sigma = variance
+base:
+  variance: 8
 
-evasion:
-  agility: 1
-  wit: 3
-  perception: 2
+# Scores for a contest are determined by multiplying scores for each attribute by the constants below and adding results
+contests:
 
-speed:
-  agility: 3
-  perception: 1
+  power:
+    strength: 3
+    agility: 1
+
+  evasion:
+    agility: 1
+    wit: 3
+    perception: 2
+
+  speed:
+    agility: 3
+    perception: 1

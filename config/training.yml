@@ -1,10 +1,18 @@
-sprinting:
-  agility: 4
-  perception: 1
+# Gain for each stat is determined by a Gaussian distribution with mean base_gain and sigma variance
+all:
+  base_gain: 4
+  variance: 2
 
-lifting:
-  strength: 4
+# Multipliers for each stat, by training regimen
+regimens:
 
-hunting:
-  perception: 2
-  wit: 3
+  sprinting:
+    agility: 4
+    perception: 1
+
+  lifting:
+    strength: 4
+
+  hunting:
+    perception: 2
+    wit: 3
