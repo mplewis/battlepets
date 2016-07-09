@@ -7,6 +7,8 @@ ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
+# This is an API-only project
+gem 'rails-api'
 # Use Passenger as the Rails server
 gem 'passenger'
 # Use PostgreSQL as the database for Active Record
