@@ -41,6 +41,11 @@ group :development do
   gem 'letter_opener'
 end
 
+group :assets do
+  # Help Heroku precompile assets
+  gem 'uglifier'
+end
+
 group :production do
   # Heroku + Rails support
   gem 'rails_12factor'
