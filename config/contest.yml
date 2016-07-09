@@ -1,0 +1,12 @@
+power:
+  strength: 3
+  agility: 1
+
+evasion:
+  agility: 1
+  wit: 3
+  perception: 2
+
+speed:
+  agility: 3
+  perception: 1

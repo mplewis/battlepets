@@ -1,0 +1,10 @@
+sprinting:
+  agility: 4
+  perception: 1
+
+lifting:
+  strength: 4
+
+hunting:
+  perception: 2
+  wit: 3
