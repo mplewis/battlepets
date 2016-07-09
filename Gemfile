@@ -16,8 +16,8 @@ gem 'pg'
 
 # Backend
 
-# JSONAPI builds awesome standardized JSON objects for API usage
-gem 'jsonapi-resources'
+# Serialize resources into JSON
+gem 'active_model_serializers'
 # Delayed Job lets us run long-running processes separately from the main Rails app
 gem 'delayed_job_active_record'
 
