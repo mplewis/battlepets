@@ -58,6 +58,7 @@ GEM
     delayed_job_active_record (4.1.1)
       activerecord (>= 3.0, < 5.1)
       delayed_job (>= 3.0, < 5)
+    distribution (0.7.3)
     domain_name (0.5.20160615)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
@@ -181,6 +182,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   delayed_job_active_record
+  distribution
   factory_girl_rails
   faker
   letter_opener

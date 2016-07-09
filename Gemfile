@@ -21,6 +21,11 @@ gem 'active_model_serializers'
 # Delayed Job lets us run long-running processes separately from the main Rails app
 gem 'delayed_job_active_record'
 
+# Business logic
+
+# Gaussian distributions for stat gains and contest performance
+gem 'distribution'
+
 # Utilities
 
 # Less verbose logging
