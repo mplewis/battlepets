@@ -4,6 +4,20 @@ class Pet < ActiveRecord::Base
 
   has_many :performances
 
+  def wins
+    performances.find_each.select {|p| p.winning?}.count
+  end
+
+  def losses
+    performances.find_each.select {|p| !p.winning?}.count
+  end
+
+  private
+
+  def initial_attribute
+    rand(2..9)
+  end
+
   def set_initial_values
     if rand(10) == 0
       self.name = Faker::StarWars.character
@@ -14,12 +28,6 @@ class Pet < ActiveRecord::Base
     self.agility = initial_attribute
     self.wit = initial_attribute
     self.perception = initial_attribute
-  end
-
-  private
-
-  def initial_attribute
-    rand(2..9)
   end
 
 end
