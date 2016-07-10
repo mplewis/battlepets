@@ -1,6 +1,6 @@
 # Performance in each attribute is determined by a Gaussian distribution with mean = pet's attribute value,
 # sigma = variance
-base:
+all:
   variance: 8
 
 # Scores for a contest are determined by multiplying scores for each attribute by the constants below and adding results

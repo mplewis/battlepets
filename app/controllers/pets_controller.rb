@@ -63,7 +63,7 @@ class PetsController < ApplicationController
     regimen = regimens[type]
     if regimen.nil?
       error = {'error': "Training regimen '#{type}' not found in known regimens: #{regimens.keys}"}
-      render json: error, status: :bad_request
+      render json: error, status: :unprocessable_entity
       return
     end
 

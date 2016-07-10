@@ -5,4 +5,5 @@ Rails.application.routes.draw do
       post 'train'
     end
   end
+  resources :matches
 end

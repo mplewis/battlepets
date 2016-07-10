@@ -17,18 +17,21 @@ ActiveRecord::Schema.define(version: 20160709222544) do
   enable_extension "plpgsql"
 
   create_table "matches", force: :cascade do |t|
-    t.string   "type"
+    t.string   "contest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "performances", force: :cascade do |t|
     t.float    "score"
-    t.integer  "match_id_id"
-    t.integer  "pet_id_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "pet_id"
+    t.integer  "match_id"
   end
+
+  add_index "performances", ["match_id"], name: "index_performances_on_match_id", using: :btree
+  add_index "performances", ["pet_id"], name: "index_performances_on_pet_id", using: :btree
 
   create_table "pets", force: :cascade do |t|
     t.string   "name"

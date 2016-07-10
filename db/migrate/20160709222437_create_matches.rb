@@ -1,7 +1,7 @@
 class CreateMatches < ActiveRecord::Migration
   def change
     create_table :matches do |t|
-      t.string :type
+      t.string :contest
 
       t.timestamps null: false
     end
