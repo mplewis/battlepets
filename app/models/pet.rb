@@ -12,6 +12,10 @@ class Pet < ActiveRecord::Base
     performances.find_each.select {|p| !p.winning?}.count
   end
 
+  def experience
+    100 * wins + 25 * losses
+  end
+
   private
 
   def initial_attribute
