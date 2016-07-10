@@ -52,6 +52,8 @@ class PetsController < ApplicationController
 
   # POST /pets/1/train
   # POST /pets/1/train.json
+  # Train a pet. Body: {"training": "type": "SOME_REGIMEN"}
+  # Regimens are defined in config/training.yml
   def train
     config = YAML.load_file Rails.root.join('config/training.yml')
     params.require(:training).permit(:type)
@@ -77,24 +79,27 @@ class PetsController < ApplicationController
     @pet = Pet.find(params[:id])
   end
 
+  # Train a pet using the base training config and a specific regimen
   def perform_training(base_config, regimen)
-    puts @pet, regimen
+    # A regimen is made of attrs to modify and a multiplier to apply on top of the base gains
     regimen.each do |attr, multiplier|
-      getter = attr.to_sym
-      attr_start = @pet.send getter
-
+      # Gaussian distribution is used to figure out how many points are gained
       mean = base_config['base_gain'] * multiplier
       sigma = base_config['variance'] * multiplier
 
-      gauss_gen = Distribution::Normal.rng mean, sigma
-      attr_change = gauss_gen.call
-      attr_change = attr_change.ceil
-      attr_change = 0 if attr_change < 0
+      # Get the original attribute value
+      getter = attr.to_sym
+      attr_start = @pet.send getter
 
-      setter = "#{attr}=".to_sym
+      # Get the new attribute value
+      gauss_gen = Distribution::Normal.rng mean, sigma
+      attr_change = gauss_gen.call  # Get the normally distributed gains
+      attr_change = attr_change.ceil  # Round up
+      attr_change = 0 if attr_change < 0  # Ensure non negative
       attr_end = attr_start + attr_change
 
-      puts "#{attr}: #{attr_start} -> #{attr_end}"
+      # Set the new value
+      setter = "#{attr}=".to_sym
       @pet.send setter, attr_end
       @pet.save!
     end
