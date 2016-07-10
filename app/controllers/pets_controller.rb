@@ -79,6 +79,10 @@ class PetsController < ApplicationController
     @pet = Pet.find(params[:id])
   end
 
+  def pet_params
+    params.require(:pet).permit(:name, :strength, :agility, :wit, :perception)
+  end
+
   # Train a pet using the base training config and a specific regimen
   def perform_training(base_config, regimen)
     # A regimen is made of attrs to modify and a multiplier to apply on top of the base gains
