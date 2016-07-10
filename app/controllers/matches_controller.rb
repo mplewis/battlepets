@@ -43,14 +43,12 @@ class MatchesController < ApplicationController
       end
     end
 
-    # Run performances for each pet
+    # Run performances for each pet asynchronously. The match is complete when all performances are complete.
     base_config = config['all']
     pets.each do |pet|
-      perf = Performance.new
-      perf.pet = pet
-      perf.match = @match
-      perf.score = score_pet base_config, pet, contest
-      perf.save
+      perf = Performance.new pet: pet, match: @match
+      perf.save!
+      PetEvaluator.evaluate_pet(perf, base_config, pet, contest)
     end
 
     if @match.save
@@ -78,25 +76,4 @@ class MatchesController < ApplicationController
     params.require(:match).permit(:type, :pets)
   end
 
-  # Score a pet's performance in a specific type of match
-  def score_pet(base_config, pet, contest)
-    score = 0
-
-    # A contest is made of attrs to check and a multiplier to apply on top of the base value
-    contest.each do |attr, multiplier|
-      # Get the pet's attribute value
-      getter = attr.to_sym
-      mean = pet.send(getter)
-
-      # Add the variance and generate the performance using a Gaussian distribution
-      sigma = base_config['variance']
-      gauss_gen = Distribution::Normal.rng mean, sigma
-      attr_score = gauss_gen.call
-
-      # Multiply by how significant this attribute is in this contest and add to the score
-      score += attr_score * multiplier
-    end
-    # Return the final score
-    score
-  end
 end
