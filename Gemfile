@@ -18,8 +18,9 @@ gem 'pg'
 
 # Serialize resources into JSON
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
-# Delayed Job lets us run long-running processes separately from the main Rails app
+# Delayed Job lets us run long-running processes separately from the main Rails app. Relies on daemons.
 gem 'delayed_job_active_record'
+gem 'daemons'
 
 # Business logic
 
