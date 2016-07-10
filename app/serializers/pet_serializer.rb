@@ -1,5 +1,5 @@
 class PetSerializer < ActiveModel::Serializer
-  attributes :id, :name, :wins, :losses, :stats
+  attributes :id, :name, :wins, :losses, :experience, :stats
 
   def stats
     {strength: object.strength,
