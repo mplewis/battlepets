@@ -1,8 +1,8 @@
 class PetEvaluator
   class << self
     def evaluate_pet(perf, base_config, pet, contest)
-      # The pet evaluation process takes a while. Each evaluation takes from 0 to 5 seconds and runs asynchronously.
-      sleep rand(0) * 5
+      # The pet evaluation process takes a while. Each evaluation runs asynchronously.
+      sleep rand(0) * 2
       perf.score = score_pet base_config, pet, contest
       perf.complete = true
       perf.save!
