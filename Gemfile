@@ -35,6 +35,8 @@ gem 'lograge'
 gem 'faker'
 # Factory creation instead of fixtures for test data
 gem 'factory_girl_rails'
+# Progress bar for seeds
+gem 'ruby-progressbar'
 
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

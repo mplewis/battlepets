@@ -57,12 +57,17 @@ Async match evaluation lives in [app/jobs/pet_evaluator.rb](app/jobs/pet_evaluat
 
 This app runs on Postgres. It runs fine in dev mode. It's running on Heroku, but the worker process isn't yet online because it costs money.
 
+## Development
+
 ```sh
 # Install gems
 bundle install
 
 # Set up your DB in the usual Rails way
-rake db:create db:migrate
+rake db:create db:migrate db:seed
+
+# After seeding the DB with pets, trainings, and matches, we need to start an
+# async worker to run the match evaluations
 
 # DO ONE AND ONLY ONE OF THESE:
 # Start an asynchronous worker to handle contest scoring
@@ -79,6 +84,14 @@ bundle exec passenger start -p 3000 --max-pool-size 3
 Finally, visit http://localhost:3000. You should see an empty leaderboard.
 
 Check out the REST API below to see how to work with the app. You'll probably want to start by creating a few pets and training them. Once that's done, you can start a contest!
+
+## Production
+
+If you put this app on Heroku, you'll need to set some environment variables for production mode. Here's an easy way to do that:
+
+```sh
+heroku config:set SECRET_TOKEN=`rake db:secret` SECRET_KEY_BASE=`rake db:secret`
+```
 
 # REST API
 
@@ -126,3 +139,4 @@ Test coverage is minimal, but the goal is to cover the important stuff – busin
 * This app is SO SLOW. There are about a million places to optimize DB accesses.
 * It's kind of gross to create a Pet's attributes in the model before_create callback.
 * There's no checking for null attributes anywhere or enforcing that attributes are non-null. If you make an attribute null with PUT, you'll probably crash the app.
+* PetTrainer and MatchRunner are inconsistent re: which class is responsible for reading the YAML. This should be refactored so they both look the same.
